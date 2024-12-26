@@ -1,16 +1,20 @@
 import express from 'express'
+import cookieParser from 'cookie-parser'
 import dotenv from 'dotenv'
 import connectDB from './lib/db.js'
 import authRoutes from './routes/auth.route.js'
+import messageRoutes from './routes/message.route.js'
 
 dotenv.config()
 const app = express()
 
 // Middleware
 app.use(express.json())
+app.use(cookieParser())
 
 // Routes
 app.use('/api/auth', authRoutes)
+app.use('/api/message', messageRoutes)
 
 const startServer = async () => {
   try {
